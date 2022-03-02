@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  db-017:
+    build: ./database
+    container_name: db-017
+    environment:
+      POSTGRES_DB: list
+      POSTGRES_USER: purin
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+
+  go-017:
+    build: ./backend
+    volumes:
+      - ./backend:/017
+    ports:
+      - 4444:4444
+    depends_on:
+      - db-017
+    links:
+      - db-017
+    command: air
+
+  react-017:
+    container_name: react-017
+    build: ./frontend
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./frontend/src:/017/src
+      - ./frontend/public/assets:/017/public/assets
+      - /017/node_modules
+    ports:
+      - 3000:3000 
+    stdin_open: true
+    command: npm start
