@@ -23,14 +23,14 @@ services:
       - db-017
     command: air
 
-  react-017:
-    container_name: react-017
-    build: ./frontend
+  react-17:
+    container_name: react-17
+    build: ./client
     environment:
       CHOKIDAR_USEPOLLING: "true"
     volumes:
-      - ./frontend/src:/017/src
-      - ./frontend/public/assets:/017/public/assets
+      - ./client/src:/017/src
+      - ./client/public/assets:/017/public/assets
       - /017/node_modules
     ports:
       - 3000:3000 

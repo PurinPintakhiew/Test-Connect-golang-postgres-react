@@ -14,7 +14,7 @@ type data struct {
 var DB *gorm.DB
 
 func SetupPostgres() {
-	dsn := "host=10.133.0.131 user=purin password=password dbname=list port=5432 sslmode=disable"
+	dsn := "host=192.168.1.29 user=purin password=password dbname=list port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
